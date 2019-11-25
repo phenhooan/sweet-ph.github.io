@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Java继承java中只能单一继承, 一个子类只能有一个父类子类继承父类的属性 方法， 但没有继承构造方法 父类 123456789public class Father&amp;#123;    String skinColor = &quot;yellow&quot;;    String eyeColor = &quot;black&quot;;    public void walk()&amp;#123;        System.out.">
+  <meta name="description" content="Java继承继承关键字: extends字类继承父类非private修饰的属性和方法java中只能单一继承, 一个子类只能有一个父类,但可以多重继承子类继承父类的属性 方法， 但没有继承构造方法(构造方法第一行super()))子类调用父类的构造方法用super(成员变量),调用方法和属性用super.字段/方法子类可以在父类属性和方法进行扩展,属性方法的调用采用就近原则。优点:减少重复代码">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java继承">
 <meta property="og:url" content="http://yoursite.com/2019/10/24/Java继承/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Java继承java中只能单一继承, 一个子类只能有一个父类子类继承父类的属性 方法， 但没有继承构造方法 父类 123456789public class Father&amp;#123;    String skinColor = &quot;yellow&quot;;    String eyeColor = &quot;black&quot;;    public void walk()&amp;#123;        System.out.">
+<meta property="og:description" content="Java继承继承关键字: extends字类继承父类非private修饰的属性和方法java中只能单一继承, 一个子类只能有一个父类,但可以多重继承子类继承父类的属性 方法， 但没有继承构造方法(构造方法第一行super()))子类调用父类的构造方法用super(成员变量),调用方法和属性用super.字段/方法子类可以在父类属性和方法进行扩展,属性方法的调用采用就近原则。优点:减少重复代码">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-25T01:30:54.778Z">
+<meta property="og:updated_time" content="2019-10-29T01:52:28.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java继承">
-<meta name="twitter:description" content="Java继承java中只能单一继承, 一个子类只能有一个父类子类继承父类的属性 方法， 但没有继承构造方法 父类 123456789public class Father&amp;#123;    String skinColor = &quot;yellow&quot;;    String eyeColor = &quot;black&quot;;    public void walk()&amp;#123;        System.out.">
+<meta name="twitter:description" content="Java继承继承关键字: extends字类继承父类非private修饰的属性和方法java中只能单一继承, 一个子类只能有一个父类,但可以多重继承子类继承父类的属性 方法， 但没有继承构造方法(构造方法第一行super()))子类调用父类的构造方法用super(成员变量),调用方法和属性用super.字段/方法子类可以在父类属性和方法进行扩展,属性方法的调用采用就近原则。优点:减少重复代码">
   <link rel="canonical" href="http://yoursite.com/2019/10/24/Java继承/">
 
 
@@ -257,7 +257,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-25 09:30:54" itemprop="dateModified" datetime="2019-10-25T09:30:54+08:00">2019-10-25</time>
+                <time title="修改时间：2019-10-29 09:52:28" itemprop="dateModified" datetime="2019-10-29T09:52:28+08:00">2019-10-29</time>
               </span>
             
           
@@ -273,12 +273,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="Java继承"><a href="#Java继承" class="headerlink" title="Java继承"></a>Java继承</h4><p><font size="3">java中只能单一继承, 一个子类只能有一个父类</font><br><font size="3">子类继承父类的属性 方法， 但没有继承构造方法</font></p>
+        <h4 id="Java继承"><a href="#Java继承" class="headerlink" title="Java继承"></a>Java继承</h4><p><font size="3">继承关键字: extends</font><br><font size="3">字类继承父类非private修饰的属性和方法</font><br><font size="3">java中只能单一继承, 一个子类只能有一个父类,但可以多重继承</font><br><font size="3">子类继承父类的属性 方法， 但没有继承构造方法(构造方法第一行super()))</font><br><font size="3">子类调用父类的构造方法用super(成员变量),调用方法和属性用super.字段/方法</font><br><font size="3">子类可以在父类属性和方法进行扩展,属性方法的调用采用就近原则。</font><br><font size="2" color="red">优点:减少重复代码      缺点:代码耦合</font></p>
 <p>父类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    String skinColor = <span class="string">"yellow"</span>;</span><br><span class="line">    String eyeColor = <span class="string">"black"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">walk</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"--直立行走"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>子类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">kid</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java继承缺省"><a href="#Java继承缺省" class="headerlink" title="Java继承缺省"></a>Java继承缺省</h4><p><font size="2">1. 由于每个类继承于Object, 默认import java.lang.*</font><br><font size="2">2. 每个类有一个默认的无参构造方法</font><br><font size="2">3. 每个构造方法第一行默认Super()调用父类构造方法</font><br><font size="2">4. 默认的 类访问修饰符(package)</font><br><font size="2">5. void返回值 默认return</font><br><font size="2">6. 每个类默认extends Object</font><br><font size="2">7. private访问修饰符的方法默认被final修饰</font><br><font size="2">8. final修饰的类 的方法默认被final修饰</font></p>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><ol>
+<li>final关键字 修饰的类不允许被继承</li>
+<li>final关键字 修饰的变量不能被修改</li>
+<li>final关键字 修饰的方法不能被重写</li>
+</ol>
+<h4 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h4><p>当子类重写父类的方法时, 必须遵守如下规则:<br><font size="3">1. 访问修饰符的开放性必须大于父类的访问修饰符。</font><br><font size="2">   ·  如果父类方法是public，那么子类必须是public</font><br><font size="2">   ·  如果父类方法是protected，那么子类必须是protected或public</font><br><font size="3">2. 子类的方法返回值的类型 必须和父类的相同或者是子类类型</font><br><font size="3">3. 子类的方法的方法名和形式参数列表，必须和父类中的是相同的(参数个数，类型，顺序)</font><br><font size="3">4. 子类中重写的异常不能抛出比父类更多的异常</font></p>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p><font size="3">1. 修改属性的可见性来限制对属性的访问(一般限制为private)</font><br><font size="3">2. 对每个private的属性提供对外的公共方法访问，也就是创建一对赋值/取值方法，间接访问属性</font><br><font size="2" color="red">对于一个只有私有属性和针对私有属性的公共get/set方法。我们称之为JavaBean</font></p>
+<h4 id="封装的好处"><a href="#封装的好处" class="headerlink" title="封装的好处"></a>封装的好处</h4><p><font size="3">1. 类的成员变量可以成为只读或者只写的</font><br><font size="3">2. 类可以控制其成员变量中的值，有一个整体的控制</font><br><font size="3">3. 封装可以被认为一个保护屏障，防止类的代码和数据被外部类定义代码随机访问和修改</font></p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p><font size="3">1. 只有static修饰的变量叫做静态变量</font><br><font size="3">2. public+static 修饰的变量-全局变量</font><br><font size="3">3. 成员变量（定义在类的语句块中）</font><br><font size="3">4. 局部变量（定义在方法的语句块中，或方法的形式参数中）</font><br><font size="3">5. 普通方法中可访问静态变量，但是在静态方法中不可以访问非静态的变量</font></p>
+<h4 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h4><p><font size="2" color="red">静态变量-&gt;静态初始化块-&gt;静态方法-&gt;super()-&gt;成员变量-&gt;初始化块-&gt;构造方法-&gt;方法</font></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态变量 在类加载器加载的时候被定义</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//成员变量 在构造方法缺省super()之后加载 </span></span><br><span class="line">    <span class="comment">//--构造方法super() &gt; 成员变量 &gt; 初始化块 &gt; 构造方法super()之后</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> j;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态初始化块 在类加载器加载的时候初始化----- 静态变量 &gt; 静态初始化块</span></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        i = <span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始化块 在构造方法缺省super()之后加载</span></span><br><span class="line">    &#123;</span><br><span class="line">        j = <span class="number">12</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态方法 再类加载器加载的时候初始化----静态初始化块 &gt; 静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getI</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"在初始化块之后运行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
+<li><p>私有属性private加get/set 与 公共属性有什么区别？<br> 私有属性被封装 隐藏了对外细节; 通过get/set方法进行赋值与取值, 可以对数据进行相应处理,保护数据安全。<br> 公共属性，访问级别为public，都能通过对象访问和修改该属性。</p>
+</li>
+<li><p>变量生命周期<br> 成员变量:在类的内部，本类的语句块中，离开了类需要用类的对象来访问<br> 局部变量:在方法的内部，方法的语句块中。<br> 全局变量:在程序的任意位置，用类名调用。<br> 静态变量:在同包的任意位置，用类名调用。</p>
+</li>
+<li><p>静态变量、静态方法、普通方法在使用中需要注意的点？<br> 静态方法不能访问非静态变量<br> 非静态方法可以访问静态成员</p>
+</li>
+<li><p>什么时候必须使用静态初始化块(静态实例化块)？<br> 当静态方法访问静态变量，而静态变量需要默认值的时候？</p>
+</li>
+<li><p>以下Javac编译后 字节码文件名为多少？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">temp</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Test.class与temp.class</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">temp</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Test.class与Test$temp.class</p>
+
     </div>
 
     
@@ -312,6 +345,10 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/29/Java内部类/" rel="prev" title="Java内部类">
+                  Java内部类 <i class="fa fa-chevron-right"></i>
+                </a>
               
             </div>
           </div>
@@ -360,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java继承"><span class="nav-number">1.</span> <span class="nav-text">Java继承</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java继承"><span class="nav-number">1.</span> <span class="nav-text">Java继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java继承缺省"><span class="nav-number">2.</span> <span class="nav-text">Java继承缺省</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#final关键字"><span class="nav-number">3.</span> <span class="nav-text">final关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重写"><span class="nav-number">4.</span> <span class="nav-text">重写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">5.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#封装的好处"><span class="nav-number">6.</span> <span class="nav-text">封装的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量"><span class="nav-number">7.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化顺序"><span class="nav-number">8.</span> <span class="nav-text">初始化顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -378,7 +415,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +441,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>

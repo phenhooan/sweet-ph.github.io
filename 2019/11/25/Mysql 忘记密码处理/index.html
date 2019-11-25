@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="以管理员方式运行cmd,然后再关闭mysql服务1C:\&amp;gt; net stop mysql   开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。1C:\&amp;gt; mysqld --console --skip-grant-tables --shared-memory   再打开一个新的cmd，无密码登录MySQL1C:\&amp;gt; mysql -u r">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows-mysql8.0.15 修改密码、重置密码方法">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/Mysql 忘记密码处理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="以管理员方式运行cmd,然后再关闭mysql服务1C:\&amp;gt; net stop mysql   开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。1C:\&amp;gt; mysqld --console --skip-grant-tables --shared-memory   再打开一个新的cmd，无密码登录MySQL1C:\&amp;gt; mysql -u r">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125112553.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125113024.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125113344.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125113430.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125113645.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125113757.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125114024.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125114117.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20190703154724994.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125143215.png">
+<meta property="og:image" content="http://yoursite.com/images/mysql_password/20191125143826.png">
+<meta property="og:updated_time" content="2019-11-25T06:54:30.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows-mysql8.0.15 修改密码、重置密码方法">
+<meta name="twitter:description" content="以管理员方式运行cmd,然后再关闭mysql服务1C:\&amp;gt; net stop mysql   开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。1C:\&amp;gt; mysqld --console --skip-grant-tables --shared-memory   再打开一个新的cmd，无密码登录MySQL1C:\&amp;gt; mysql -u r">
+<meta name="twitter:image" content="http://yoursite.com/images/mysql_password/20191125112553.png">
+  <link rel="canonical" href="http://yoursite.com/2019/11/25/Mysql 忘记密码处理/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>windows-mysql8.0.15 修改密码、重置密码方法 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/25/Mysql 忘记密码处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="penghuan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">windows-mysql8.0.15 修改密码、重置密码方法
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-25 10:16:40 / 修改时间：14:54:30" itemprop="dateCreated datePublished" datetime="2019-11-25T10:16:40+08:00">2019-11-25</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="以管理员方式运行cmd-然后再关闭mysql服务"><a href="#以管理员方式运行cmd-然后再关闭mysql服务" class="headerlink" title="以管理员方式运行cmd,然后再关闭mysql服务"></a>以管理员方式运行cmd,然后再关闭mysql服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; net stop mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125112553.png" alt="avatar"></p>
+<h4 id="开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。"><a href="#开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。" class="headerlink" title="开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。"></a>开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; mysqld --console --skip-grant-tables --shared-memory</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125113024.png" alt="avatar"></p>
+<h4 id="再打开一个新的cmd，无密码登录MySQL"><a href="#再打开一个新的cmd，无密码登录MySQL" class="headerlink" title="再打开一个新的cmd，无密码登录MySQL"></a>再打开一个新的cmd，无密码登录MySQL</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; mysql -u root</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125113344.png" alt="avatar"></p>
+<h4 id="选择mysql数据库-因为user表在该数据库下"><a href="#选择mysql数据库-因为user表在该数据库下" class="headerlink" title="选择mysql数据库(因为user表在该数据库下)"></a>选择mysql数据库(因为user表在该数据库下)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; user mysql;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125113430.png" alt="avatar"></p>
+<h4 id="将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。"><a href="#将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。" class="headerlink" title="将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。"></a>将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; update user <span class="built_in">set</span> authentication_string=<span class="string">''</span> <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; quit</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125113645.png" alt="avatar"></p>
+<p><font size="3" color="red">上面操作是以跳过密码验证方式进入mysql，权限不够。继续以下操作将能修改密码。</font></p>
+<h4 id="再次进入mysql数据库，本次要求输入密码，直接回车就行。"><a href="#再次进入mysql数据库，本次要求输入密码，直接回车就行。" class="headerlink" title="再次进入mysql数据库，本次要求输入密码，直接回车就行。"></a>再次进入mysql数据库，本次要求输入密码，直接回车就行。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125113757.png" alt="avatar"></p>
+<h4 id="同样在更改前后，flush刷新"><a href="#同样在更改前后，flush刷新" class="headerlink" title="同样在更改前后，flush刷新"></a>同样在更改前后，flush刷新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; alter user ‘root’@’localhost’IDENTIFIED BY ‘你的密码’;</span><br><span class="line">mysql&gt; alter user ‘root’@’%’IDENTIFIED BY ‘你的密码’;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125114024.png" alt="avatar"></p>
+<h4 id="最后尝试一下登录"><a href="#最后尝试一下登录" class="headerlink" title="最后尝试一下登录"></a>最后尝试一下登录</h4><p><img src="/images/mysql_password/20191125114117.png" alt="avatar"></p>
+<h4 id="在使用Navicat登录本地账户时"><a href="#在使用Navicat登录本地账户时" class="headerlink" title="在使用Navicat登录本地账户时"></a>在使用Navicat登录本地账户时</h4><p>由于高版本密码加密方式为caching_sha2_password加密,有可能出现以下错误:<br><img src="/images/mysql_password/20190703154724994.png" alt="avatar"></p>
+<p>因此将加密方式改为mysql_native_password方式加密<br>代码如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看加密方式</span></span><br><span class="line">mysql&gt; user,plugin from user <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line"><span class="comment"># 更改加密方式和密码</span></span><br><span class="line">mysql&gt; alter user <span class="string">'root'</span>@<span class="string">'%'</span> identified with mysql_native_password by <span class="string">'你的密码'</span>;</span><br><span class="line"><span class="comment"># 或者是另外一种</span></span><br><span class="line">mysql&gt; alter user <span class="string">'root'</span>@<span class="string">'localhost'</span> identified with mysql_native_password by <span class="string">'你的密码'</span>;</span><br><span class="line"><span class="comment"># 修改完刷新</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125143215.png" alt="avatar"></p>
+<p>最后成功修改，可登入navicat</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 再次查看加密方式</span></span><br><span class="line">mysql&gt; user,plugin from user <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql_password/20191125143826.png" alt="avatar"></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/22/Mysql 安装与配置/" rel="next" title="Mysql 安装与配置">
+                  <i class="fa fa-chevron-left"></i> Mysql 安装与配置
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/11/25/初始mysql/" rel="prev" title="初始Java">
+                  初始Java <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#以管理员方式运行cmd-然后再关闭mysql服务"><span class="nav-number">1.</span> <span class="nav-text">以管理员方式运行cmd,然后再关闭mysql服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。"><span class="nav-number">2.</span> <span class="nav-text">开启跳过密码验证登录的MySQL服务，命令执行后该命令框会出现很多执行代码，不要关闭该窗口。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再打开一个新的cmd，无密码登录MySQL"><span class="nav-number">3.</span> <span class="nav-text">再打开一个新的cmd，无密码登录MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#选择mysql数据库-因为user表在该数据库下"><span class="nav-number">4.</span> <span class="nav-text">选择mysql数据库(因为user表在该数据库下)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。"><span class="nav-number">5.</span> <span class="nav-text">将密码置为空，然后输入命令quit退出，下次登录将不会使用密码。修改之前与修改之后flush刷新。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再次进入mysql数据库，本次要求输入密码，直接回车就行。"><span class="nav-number">6.</span> <span class="nav-text">再次进入mysql数据库，本次要求输入密码，直接回车就行。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同样在更改前后，flush刷新"><span class="nav-number">7.</span> <span class="nav-text">同样在更改前后，flush刷新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后尝试一下登录"><span class="nav-number">8.</span> <span class="nav-text">最后尝试一下登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在使用Navicat登录本地账户时"><span class="nav-number">9.</span> <span class="nav-text">在使用Navicat登录本地账户时</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/head.jpg"
+      alt="penghuan">
+  <p class="site-author-name" itemprop="name">penghuan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/sweet-ph" title="GitHub &rarr; https://github.com/sweet-ph" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:pengh0722coder@163.com" title="E-Mail &rarr; mailto:pengh0722coder@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pengh</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
