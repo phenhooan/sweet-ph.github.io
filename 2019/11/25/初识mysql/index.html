@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>初识Mysql - Hexo</title>
+
+
+    <meta name="description" content="什么是SQL SQL是结构化查询语言(Structured Query Language) 一种用于管理关系型数据库，与数据库中的数据进行通讯得到计算机标准语言(方言)  数据库名字要求 第一个字符必须是下列字符之一：Unicode 标准 3.0 所定义的字母（Unicode 中定义的字母包括拉丁字母 a-z 和 A-Z，以及来自其它语言的字母字符）。下划线 (_)、at 符号 (@) 或者数字符">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Mysql">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/初识mysql/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是SQL SQL是结构化查询语言(Structured Query Language) 一种用于管理关系型数据库，与数据库中的数据进行通讯得到计算机标准语言(方言)  数据库名字要求 第一个字符必须是下列字符之一：Unicode 标准 3.0 所定义的字母（Unicode 中定义的字母包括拉丁字母 a-z 和 A-Z，以及来自其它语言的字母字符）。下划线 (_)、at 符号 (@) 或者数字符">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/mysql/mysql.jpg">
+<meta property="og:updated_time" content="2019-11-26T03:23:53.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识Mysql">
+<meta name="twitter:description" content="什么是SQL SQL是结构化查询语言(Structured Query Language) 一种用于管理关系型数据库，与数据库中的数据进行通讯得到计算机标准语言(方言)  数据库名字要求 第一个字符必须是下列字符之一：Unicode 标准 3.0 所定义的字母（Unicode 中定义的字母包括拉丁字母 a-z 和 A-Z，以及来自其它语言的字母字符）。下划线 (_)、at 符号 (@) 或者数字符">
+<meta name="twitter:image" content="http://yoursite.com/images/mysql/mysql.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="初识Mysql" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/mysql/mysql.jpg" alt="初识Mysql">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-25T06:43:40.000Z">2019-11-25</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Mysql/">Mysql</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1137 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                初识Mysql
+            
+        </h1>
+        <div class="content">
+            <h4 id="什么是SQL"><a href="#什么是SQL" class="headerlink" title="什么是SQL"></a>什么是SQL</h4><ol>
+<li>SQL是结构化查询语言(Structured Query Language)</li>
+<li>一种用于管理关系型数据库，与数据库中的数据进行通讯得到计算机标准语言(方言)</li>
+</ol>
+<h4 id="数据库名字要求"><a href="#数据库名字要求" class="headerlink" title="数据库名字要求"></a>数据库名字要求</h4><ol>
+<li>第一个字符必须是下列字符之一：<br>Unicode 标准 3.0 所定义的字母（Unicode 中定义的字母包括拉丁字母 a-z 和 A-Z，以及来自其它语言的字母字符）。<br>下划线 (_)、at 符号 (@) 或者数字符号。 </li>
+<li>后续字符可以是：<br>Unicode 标准 3.0 所定义的字母。<br>来自基本拉丁字母或其它国家/地区脚本的十进制数字。<br>at符号（@）、美元符号 ($)、数字符号或下划线。<br>标识符不能是所用RDBMS的保留字。 table  database<br>不允许嵌入空格或其它特殊字符。</li>
+</ol>
+<h4 id="创建表，字段要求"><a href="#创建表，字段要求" class="headerlink" title="创建表，字段要求"></a>创建表，字段要求</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INT</td>
+<td>整型</td>
+<td>4字节整数类型，范围约+/-21亿</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>长整型</td>
+<td>8字节整数类型，范围约+/-922亿亿</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>浮点型</td>
+<td>4字节浮点数，范围约+/-1038</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>浮点型</td>
+<td>8字节浮点数，范围约+/-10308</td>
+</tr>
+<tr>
+<td>DECIMAL(M,D)</td>
+<td>高精度小数</td>
+<td>由用户指定精度的小数</td>
+</tr>
+<tr>
+<td>CHAR(N)</td>
+<td>定长字符串</td>
+<td>存储指定长度的字符串，例如：CHAR(100)总是存储100个字符的字符串</td>
+</tr>
+<tr>
+<td>VARCHAR(N)</td>
+<td>变长字符串</td>
+<td>存储可变长度的字符串，例如，VARCHAR(100)可以存储0~100个字符的字符串</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>布尔类型</td>
+<td>存储True或者False</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>日期类型</td>
+<td>存储日期，例如，2018-06-22</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>时间类型</td>
+<td>存储时间，例如，12:20:59</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>日期和时间类型</td>
+<td>存储日期+时间，例如，2018-06-22 12:20:59</td>
+</tr>
+</tbody></table>
+<p><font size="3" color="red">注意：M：整数位+小数位为总位数，D为小数位，M必须大于D,REAL又可以写成FLOAT(24)。</font></p>
+<h4 id="DOS下操作mysql"><a href="#DOS下操作mysql" class="headerlink" title="DOS下操作mysql"></a>DOS下操作mysql</h4><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 连接mysql数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="hljs-comment"># 出现Enter Password:******</span></span><br><span class="line"><span class="hljs-comment"># 输入你的密码 进入mysql</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 显示所有数据库</span></span><br><span class="line">show databases;</span><br><span class="line"><span class="hljs-comment"># 创建数据库</span></span><br><span class="line">create database study;</span><br><span class="line"><span class="hljs-comment"># 使用数据库</span></span><br><span class="line">use study;</span><br><span class="line"><span class="hljs-comment"># 创建数据表</span></span><br><span class="line">create table student(s_id INT, s_name VARCHAR(20));</span><br></pre></td></tr></table></figure>
+
+<p>实际执行操作效果如下：<br><img src="/images/mysql01/20191125153418.png" alt="avatar"></p>
+<h4 id="开始对数据表进行操作"><a href="#开始对数据表进行操作" class="headerlink" title="开始对数据表进行操作"></a>开始对数据表进行操作</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 显示所有的数据表</span></span><br><span class="line"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;</span><br><span class="line"><span class="hljs-comment">-- 显示表中数据</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> student;</span><br><span class="line"><span class="hljs-comment">-- 向数据表中插入数据</span></span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> student <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">'小黑'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql01/20191125155527.png" alt="avatar"></p>
+<h4 id="删除数据表和数据库"><a href="#删除数据表和数据库" class="headerlink" title="删除数据表和数据库"></a>删除数据表和数据库</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 删除数据表student</span></span><br><span class="line"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> student;</span><br><span class="line"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 删除数据库study;</span></span><br><span class="line"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">database</span> study;</span><br><span class="line"><span class="hljs-keyword">show</span> <span class="hljs-keyword">databases</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改表名和字段"><a href="#修改表名和字段" class="headerlink" title="修改表名和字段"></a>修改表名和字段</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 把表old_name更名为新名字new_name</span></span><br><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> old_student <span class="hljs-keyword">rename</span> new_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- ALTER TABLE &lt;表名&gt; MODIFY &lt;属性名 数据类型&gt;;</span></span><br><span class="line"><span class="hljs-comment">-- 修改字段数据类型</span></span><br><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> new_student <span class="hljs-keyword">modify</span> <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- ALTER TABLE &lt;表名&gt; CHANGE 旧属性名 新属性名 新数据类型;</span></span><br><span class="line"><span class="hljs-comment">-- 修改字段名与数据类型</span></span><br><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> new_student <span class="hljs-keyword">change</span> <span class="hljs-keyword">name</span> stu_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">40</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- ALTER TABLE 表名 ADD 属性名1 数据类型 [完整性约束条件] [FIRST | AFTER 属性名2];</span></span><br><span class="line"><span class="hljs-comment">-- 增加表字段</span></span><br><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> new_student <span class="hljs-keyword">add</span> teacher_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">id</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- ALTER TABLE 表名 DROP 属性名;</span></span><br><span class="line"><span class="hljs-comment">-- 删除表字段</span></span><br><span class="line"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> new_student <span class="hljs-keyword">drop</span> teacher_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql01/20191125163923.png" alt="avatar"></p>
+<h4 id="显示表结构"><a href="#显示表结构" class="headerlink" title="显示表结构"></a>显示表结构</h4><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 显示表new_student表的结构信息</span></span><br><span class="line">describe new_student;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/mysql01/20191125160611.png" alt="avatar"></p>
+<h4 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 在MySQL中，下面的语句创建一个名MY_t_class的新表，该表是复制了t_class表的数据和结构（列、数据类型）</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> MY_t_class <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> t_class;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 复制表的同时表的约束并不能复制过来。所以，推荐使用CREATE TABLE语句创建基本的列和数据类型，</span></span><br><span class="line"><span class="hljs-comment">-- 然后使用ALTER TABLE命令添加所有其它约束。如果是只复制表结构，不复制数据，只需要在WHERE子</span></span><br><span class="line"><span class="hljs-comment">-- 句中添加一个永远不等于true的条件即可。</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> MY_t_class <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> t_class <span class="hljs-keyword">WHERE</span> <span class="hljs-number">1</span>=<span class="hljs-number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用自增机制"><a href="#使用自增机制" class="headerlink" title="使用自增机制"></a>使用自增机制</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 在MySQL数据库中，提供了一种自动为列产生数值的机制。这种自动产生值的字段通常与主键约束一起配合使用。</span></span><br><span class="line"><span class="hljs-comment">-- MySQL使用auto_increment来实现列的自增长，例如：</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_class(</span><br><span class="line">	c_id <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,<span class="hljs-comment">--定义自增长</span></span><br><span class="line">	c_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--增加数据时可以不为自增长列设定值</span></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t_class(c_name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'t01'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- MySQL中，自增长序号是从1开始，每次递增1。也可以通过下面的代码设置起始序号：</span></span><br><span class="line"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> t_class AUTO_INCREMENT=<span class="hljs-number">100000</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Mysql/">Mysql</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/26/Mysql 用户操作/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Mysql用户操作</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/25/Mysql 忘记密码处理/">
+                <span class="level-item">windows-mysql8.0.15 修改密码、重置密码方法</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'xxxxxxxx',
+        app_key: 'xxxxxxxx',
+        placeholder: 'Please enter comments.'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/59dbc1a4cd792b7d036d83e31dfbf5b6?s=128" alt="penghuan">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        penghuan
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        study note
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>leshan sichuan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/sweet-ph" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/sweet-ph">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="E-Mail" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-creative-commons"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.baidu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Baidu</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.baidu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/HTML/">
+            <span class="level-start">
+                <span class="level-item">HTML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaEE/">
+            <span class="level-start">
+                <span class="level-item">JavaEE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaSE/">
+            <span class="level-start">
+                <span class="level-item">JavaSE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Mysql/">
+            <span class="level-start">
+                <span class="level-item">Mysql</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/集群/">
+            <span class="level-start">
+                <span class="level-item">集群</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Dubbo/" style="font-size: 10px;">Dubbo</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/JavaEE/" style="font-size: 13.33px;">JavaEE</a> <a href="/tags/Mysql/" style="font-size: 16.67px;">Mysql</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="初识Mysql" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 penghuan&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

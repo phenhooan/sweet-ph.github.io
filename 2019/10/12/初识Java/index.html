@@ -1,61 +1,16 @@
 <!DOCTYPE html>
-
-
-
-
-
-<html lang="zh-CN">
+<html  lang="zh">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+    <meta charset="utf-8" />
 
-<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>初识Java - Hexo</title>
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.4.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
-
-  <meta name="description" content="一.学习路线 前置 Java SE Java EE 框架-项目 扩展高级的应用  二.认识Java1995年5月23日Java诞生JDK(Java Develop Kit)JRE(Java Run Environment) 三.Java技术特点 简单性 (1)Java与C++的风格类似。 (2)Java比C++简单,没有头文件、指针等。 (3)提供了丰富的类库,方便程序的开发。  面向对象的语言">
+    <meta name="description" content="一.学习路线 前置 Java SE Java EE 框架-项目 扩展高级的应用  二.认识Java1995年5月23日Java诞生JDK(Java Develop Kit)JRE(Java Run Environment) 三.Java技术特点 简单性 (1)Java与C++的风格类似。 (2)Java比C++简单,没有头文件、指针等。 (3)提供了丰富的类库,方便程序的开发。  面向对象的语言">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识Java">
@@ -63,29 +18,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一.学习路线 前置 Java SE Java EE 框架-项目 扩展高级的应用  二.认识Java1995年5月23日Java诞生JDK(Java Develop Kit)JRE(Java Run Environment) 三.Java技术特点 简单性 (1)Java与C++的风格类似。 (2)Java比C++简单,没有头文件、指针等。 (3)提供了丰富的类库,方便程序的开发。  面向对象的语言">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/images/keyword.jpg">
-<meta property="og:image" content="http://yoursite.com/images/datatype.jpg">
-<meta property="og:updated_time" content="2019-10-16T01:23:12.872Z">
+<meta property="og:image" content="http://yoursite.com/images/java/javase.jpg">
+<meta property="og:updated_time" content="2019-11-26T03:27:40.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Java">
 <meta name="twitter:description" content="一.学习路线 前置 Java SE Java EE 框架-项目 扩展高级的应用  二.认识Java1995年5月23日Java诞生JDK(Java Develop Kit)JRE(Java Run Environment) 三.Java技术特点 简单性 (1)Java与C++的风格类似。 (2)Java比C++简单,没有头文件、指针等。 (3)提供了丰富的类库,方便程序的开发。  面向对象的语言">
-<meta name="twitter:image" content="http://yoursite.com/images/keyword.jpg">
-  <link rel="canonical" href="http://yoursite.com/2019/10/12/初识Java/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>初识Java | Hexo</title>
-  
+<meta name="twitter:image" content="http://yoursite.com/images/java/javase.jpg">
 
 
 
@@ -93,190 +31,139 @@
 
 
 
+<link rel="icon" href="/images/favicon.svg">
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-archives">
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-
-  <div id="posts" class="posts-expand">
-      <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/12/初识Java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="penghuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">初识Java
-
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-12 09:29:14" itemprop="dateCreated datePublished" datetime="2019-10-12T09:29:14+08:00">2019-10-12</time>
-            </span>
-          
+                <img src="/images/logo.svg" alt="初识Java" height="28">
             
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-16 09:23:12" itemprop="dateModified" datetime="2019-10-16T09:23:12+08:00">2019-10-16</time>
-              </span>
-            
-          
-
-          
-
+            </a>
         </div>
-      </header>
-
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
     
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/java/javase.jpg" alt="初识Java">
+        </span>
+    </div>
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h4 id="一-学习路线"><a href="#一-学习路线" class="headerlink" title="一.学习路线"></a>一.学习路线</h4><ol>
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-12T01:29:14.000Z">2019-10-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1150 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                初识Java
+            
+        </h1>
+        <div class="content">
+            <h4 id="一-学习路线"><a href="#一-学习路线" class="headerlink" title="一.学习路线"></a>一.学习路线</h4><ol>
 <li>前置</li>
 <li>Java SE</li>
 <li>Java EE</li>
@@ -290,10 +177,10 @@
 <li><p>面向对象的语言<br> <font size="3">万物皆对象</font><br> <font size="3">oo编程 Oriented Object</font></p>
 </li>
 <li><p>一种与平台无关的语言<br> <font color="red" size="3">(1)测试代码</font><br> <font size="2">创建一个文件Study01.java</font></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Study01</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.print(<span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Study01</span></span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.print(<span class="hljs-string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p> <font color="red" size="3">(2)运行代码</font><br> <font size="2">Win+R打开CMD 切换到java文件所在目录,执行以下代码</font></p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac Study01.java</span><br><span class="line">java Study01</span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac Study01.java</span><br><span class="line">java Study01</span><br></pre></td></tr></table></figure>
 
 <p> <font color="red" size="3">(3)程序运行过程</font><br> <font size="2">Java源程序 –&gt; Compiler编译成 .class的文件 –&gt; JVM(Java Virtual Machine) 解释(interpreter),翻译到不同平台</font> </p>
 </li>
@@ -314,17 +201,17 @@
 </ol>
 <h4 id="七-数据类型"><a href="#七-数据类型" class="headerlink" title="七.数据类型"></a>七.数据类型</h4><ol>
 <li><p>数字类型<br> (1).整数 8位 16位 32位 64位<br> (2).小数 32位 64位<br> <font size="2">小数的默认类型为double如 123.456</font></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Study01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 8位 byte</span></span><br><span class="line">        <span class="keyword">byte</span> b = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 短整型</span></span><br><span class="line">        <span class="keyword">short</span> s = <span class="number">1234</span>;</span><br><span class="line">        <span class="comment">// 32位 标准整型</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">123</span>;</span><br><span class="line">        <span class="comment">// 64位 长整型</span></span><br><span class="line">        <span class="keyword">long</span> l = <span class="number">123456789L</span>;</span><br><span class="line">        <span class="comment">// 32位 单精度浮点型</span></span><br><span class="line">        <span class="keyword">float</span> = <span class="number">123.45f</span>;</span><br><span class="line">        <span class="comment">// 64位 双精度浮点型</span></span><br><span class="line">        <span class="keyword">double</span> = <span class="number">123456.789</span>d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Study01</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-comment">// 8位 byte</span></span><br><span class="line">        <span class="hljs-keyword">byte</span> b = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-comment">// 短整型</span></span><br><span class="line">        <span class="hljs-keyword">short</span> s = <span class="hljs-number">1234</span>;</span><br><span class="line">        <span class="hljs-comment">// 32位 标准整型</span></span><br><span class="line">        <span class="hljs-keyword">int</span> i = <span class="hljs-number">123</span>;</span><br><span class="line">        <span class="hljs-comment">// 64位 长整型</span></span><br><span class="line">        <span class="hljs-keyword">long</span> l = <span class="hljs-number">123456789L</span>;</span><br><span class="line">        <span class="hljs-comment">// 32位 单精度浮点型</span></span><br><span class="line">        <span class="hljs-keyword">float</span> = <span class="hljs-number">123.45f</span>;</span><br><span class="line">        <span class="hljs-comment">// 64位 双精度浮点型</span></span><br><span class="line">        <span class="hljs-keyword">double</span> = <span class="hljs-number">123456.789</span>d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>字符类型<br> (1).单个字符char</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Study02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> ch = <span class="string">'啊'</span>;</span><br><span class="line">        System.out.println(<span class="string">"char类型的ch的值为: "</span> + ch);</span><br><span class="line">        <span class="comment">//整数转字符</span></span><br><span class="line">        <span class="keyword">int</span>  i  = <span class="string">'a'</span>;</span><br><span class="line">        System.out.println(<span class="string">"int类型的i的值为: "</span> + i);</span><br><span class="line">        <span class="keyword">char</span> ch01 = <span class="number">97</span>;</span><br><span class="line">        System.out.println(<span class="string">"char类型的ch01的值为: "</span> + ch01);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Study02</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">char</span> ch = <span class="hljs-string">'啊'</span>;</span><br><span class="line">        System.out.println(<span class="hljs-string">"char类型的ch的值为: "</span> + ch);</span><br><span class="line">        <span class="hljs-comment">//整数转字符</span></span><br><span class="line">        <span class="hljs-keyword">int</span>  i  = <span class="hljs-string">'a'</span>;</span><br><span class="line">        System.out.println(<span class="hljs-string">"int类型的i的值为: "</span> + i);</span><br><span class="line">        <span class="hljs-keyword">char</span> ch01 = <span class="hljs-number">97</span>;</span><br><span class="line">        System.out.println(<span class="hljs-string">"char类型的ch01的值为: "</span> + ch01);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <img src="../../../../images/datatype.jpg">
 
 <h4 id="八-转义字符"><a href="#八-转义字符" class="headerlink" title="八.转义字符"></a>八.转义字符</h4><p>转义字符是用来表示控制字符和特殊字符,它由一个反斜杠开头’&#39;后面跟上一个字符</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c = <span class="string">'\\'</span>;</span><br><span class="line">System.out.println(c);</span><br><span class="line"><span class="comment">/* output:</span></span><br><span class="line"><span class="comment"> *  \</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">char</span> c = <span class="hljs-string">'\\'</span>;</span><br><span class="line">System.out.println(c);</span><br><span class="line"><span class="hljs-comment">/* output:</span></span><br><span class="line"><span class="hljs-comment"> *  \</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="九-各种类型默认值"><a href="#九-各种类型默认值" class="headerlink" title="九.各种类型默认值"></a>九.各种类型默认值</h4><table>
 <thead>
@@ -375,7 +262,7 @@
 <td>false</td>
 </tr>
 </tbody></table>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Study03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">byte</span> b;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">short</span> s;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">long</span> l;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">float</span> f;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">double</span> d;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> c;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">boolean</span> bool;</span><br><span class="line">	<span class="keyword">static</span> String str;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//main方法是一个静态的方法,在它的内部只能使用静态的变量</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"byte: "</span> + b);</span><br><span class="line">		System.out.println(<span class="string">"short: "</span> + s);</span><br><span class="line">		System.out.println(<span class="string">"int: "</span> + i);</span><br><span class="line">		System.out.println(<span class="string">"long: "</span> + l);</span><br><span class="line">		System.out.println(<span class="string">"float: "</span> + f);</span><br><span class="line">		System.out.println(<span class="string">"double: "</span> + d);</span><br><span class="line">		System.out.println(<span class="string">"char: "</span> + c);</span><br><span class="line">		System.out.println(<span class="string">"boolean: "</span> + bool);</span><br><span class="line">		System.out.println(<span class="string">"String: "</span> + str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** output:</span></span><br><span class="line"><span class="comment"> * byte: 0</span></span><br><span class="line"><span class="comment"> * short: 0</span></span><br><span class="line"><span class="comment"> * int: 0</span></span><br><span class="line"><span class="comment"> * long: 0</span></span><br><span class="line"><span class="comment"> * float: 0.0</span></span><br><span class="line"><span class="comment"> * double: 0.0</span></span><br><span class="line"><span class="comment"> * char: </span></span><br><span class="line"><span class="comment"> * boolean: false</span></span><br><span class="line"><span class="comment"> * String: null</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Study03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span> b;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> s;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> l;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> f;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> d;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span> c;</span><br><span class="line">	<span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> bool;</span><br><span class="line">	<span class="hljs-keyword">static</span> String str;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-comment">//main方法是一个静态的方法,在它的内部只能使用静态的变量</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="hljs-string">"byte: "</span> + b);</span><br><span class="line">		System.out.println(<span class="hljs-string">"short: "</span> + s);</span><br><span class="line">		System.out.println(<span class="hljs-string">"int: "</span> + i);</span><br><span class="line">		System.out.println(<span class="hljs-string">"long: "</span> + l);</span><br><span class="line">		System.out.println(<span class="hljs-string">"float: "</span> + f);</span><br><span class="line">		System.out.println(<span class="hljs-string">"double: "</span> + d);</span><br><span class="line">		System.out.println(<span class="hljs-string">"char: "</span> + c);</span><br><span class="line">		System.out.println(<span class="hljs-string">"boolean: "</span> + bool);</span><br><span class="line">		System.out.println(<span class="hljs-string">"String: "</span> + str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/** output:</span></span><br><span class="line"><span class="hljs-comment"> * byte: 0</span></span><br><span class="line"><span class="hljs-comment"> * short: 0</span></span><br><span class="line"><span class="hljs-comment"> * int: 0</span></span><br><span class="line"><span class="hljs-comment"> * long: 0</span></span><br><span class="line"><span class="hljs-comment"> * float: 0.0</span></span><br><span class="line"><span class="hljs-comment"> * double: 0.0</span></span><br><span class="line"><span class="hljs-comment"> * char: </span></span><br><span class="line"><span class="hljs-comment"> * boolean: false</span></span><br><span class="line"><span class="hljs-comment"> * String: null</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="十-变量命名规范"><a href="#十-变量命名规范" class="headerlink" title="十.变量命名规范"></a>十.变量命名规范</h4><ol>
 <li>什么是变量？<br> <font size="2">变量是指没有固定的值，可以改变的数，存储信息(数据)的容器</font></li>
@@ -383,252 +270,952 @@
 <li>变量命名的规范<br> <font size="2">(1).见名知意</font><br> <font size="2">(2).第一个单词首字母小写</font></li>
 </ol>
 <h4 id="十一-什么是常量"><a href="#十一-什么是常量" class="headerlink" title="十一.什么是常量?"></a>十一.什么是常量?</h4><p><font size="3" color="red">1.final修饰的变量为常量，不可修改</font><br><font size="3" color="red">2.常量的变量名为全大写</font><br><font size="3" color="red">3.常量的变量名为多个单词时，使用下划线分割</font></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">double</span> PI = <span class="number">3.1415926535</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> PI = <span class="hljs-number">3.1415926535</span>;</span><br></pre></td></tr></table></figure>
 
 <h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><p><font size="3">1.输入一整数作为秒数，在控制台按小时，分钟，秒的格式输出(如输入600，页面显示：0小时10分0秒)</font></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"请输入一个整数:"</span>);</span><br><span class="line">    Scanner scan1 = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    <span class="keyword">int</span> num1 = scan1.nextInt();</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">0</span>, m = <span class="number">0</span>, s = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    s = num1 % <span class="number">60</span>;</span><br><span class="line">    m = (num1 / <span class="number">60</span>) % <span class="number">60</span>;</span><br><span class="line">    h = (num1 / (<span class="number">60</span> * <span class="number">60</span>)) % <span class="number">60</span>;</span><br><span class="line">    </span><br><span class="line">    System.out.println(h + <span class="string">"小时"</span> + m + <span class="string">"分钟"</span> + s +<span class="string">"秒"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printTime</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="hljs-string">"请输入一个整数:"</span>);</span><br><span class="line">    Scanner scan1 = <span class="hljs-keyword">new</span> Scanner(System.in);</span><br><span class="line">    <span class="hljs-keyword">int</span> num1 = scan1.nextInt();</span><br><span class="line">    <span class="hljs-keyword">int</span> h = <span class="hljs-number">0</span>, m = <span class="hljs-number">0</span>, s = <span class="hljs-number">0</span>;</span><br><span class="line">    </span><br><span class="line">    s = num1 % <span class="hljs-number">60</span>;</span><br><span class="line">    m = (num1 / <span class="hljs-number">60</span>) % <span class="hljs-number">60</span>;</span><br><span class="line">    h = (num1 / (<span class="hljs-number">60</span> * <span class="hljs-number">60</span>)) % <span class="hljs-number">60</span>;</span><br><span class="line">    </span><br><span class="line">    System.out.println(h + <span class="hljs-string">"小时"</span> + m + <span class="hljs-string">"分钟"</span> + s +<span class="hljs-string">"秒"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><font size="3">2.输入一整数，在控制台按倒序的格式输出(如输入2019，页面显示：9102 )</font></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> reverse&#123;</span><br><span class="line">    System.out.println(<span class="string">"请输入一个4位数整数:"</span>);</span><br><span class="line">    Scanner scan2 = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    <span class="keyword">int</span> num2 = scan2.nextInt();</span><br><span class="line">    <span class="keyword">int</span> one = <span class="number">0</span>, two = <span class="number">0</span>,three = <span class="number">0</span>,four = <span class="number">0</span>;</span><br><span class="line">    one = num2 / <span class="number">1000</span>;</span><br><span class="line">    two = (num2 - one * <span class="number">1000</span>) / <span class="number">100</span>;</span><br><span class="line">    three = (num2 - one * <span class="number">1000</span> - two * <span class="number">100</span>) / <span class="number">10</span>;</span><br><span class="line">    four = num2 - one * <span class="number">1000</span> - two * <span class="number">100</span> - three * <span class="number">10</span>;</span><br><span class="line">    System.out.println(four + <span class="string">""</span> + three + <span class="string">""</span> + two + <span class="string">""</span> + one);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    </div>
-
-    
-    
-    
-        
-      
-
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/Java/" rel="tag"># Java</a>
-            
-          </div>
-        
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/2019/09/10/学习Dubbo/" rel="next" title="学习Dubbo">
-                  <i class="fa fa-chevron-left"></i> 学习Dubbo
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/15/Java控制语句/" rel="prev" title="Java控制语句">
-                  Java控制语句 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> reverse&#123;</span><br><span class="line">    System.out.println(<span class="hljs-string">"请输入一个4位数整数:"</span>);</span><br><span class="line">    Scanner scan2 = <span class="hljs-keyword">new</span> Scanner(System.in);</span><br><span class="line">    <span class="hljs-keyword">int</span> num2 = scan2.nextInt();</span><br><span class="line">    <span class="hljs-keyword">int</span> one = <span class="hljs-number">0</span>, two = <span class="hljs-number">0</span>,three = <span class="hljs-number">0</span>,four = <span class="hljs-number">0</span>;</span><br><span class="line">    one = num2 / <span class="hljs-number">1000</span>;</span><br><span class="line">    two = (num2 - one * <span class="hljs-number">1000</span>) / <span class="hljs-number">100</span>;</span><br><span class="line">    three = (num2 - one * <span class="hljs-number">1000</span> - two * <span class="hljs-number">100</span>) / <span class="hljs-number">10</span>;</span><br><span class="line">    four = num2 - one * <span class="hljs-number">1000</span> - two * <span class="hljs-number">100</span> - three * <span class="hljs-number">10</span>;</span><br><span class="line">    System.out.println(four + <span class="hljs-string">""</span> + three + <span class="hljs-string">""</span> + two + <span class="hljs-string">""</span> + one);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Java/">Java</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-        
-        
-        
-        
-      
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-学习路线"><span class="nav-number">1.</span> <span class="nav-text">一.学习路线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-认识Java"><span class="nav-number">2.</span> <span class="nav-text">二.认识Java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-Java技术特点"><span class="nav-number">3.</span> <span class="nav-text">三.Java技术特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-Java要求"><span class="nav-number">4.</span> <span class="nav-text">四.Java要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五-C-S和B-S项目区分"><span class="nav-number">5.</span> <span class="nav-text">五.C/S和B/S项目区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六-Java标识符"><span class="nav-number">6.</span> <span class="nav-text">六.Java标识符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七-数据类型"><span class="nav-number">7.</span> <span class="nav-text">七.数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八-转义字符"><span class="nav-number">8.</span> <span class="nav-text">八.转义字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#九-各种类型默认值"><span class="nav-number">9.</span> <span class="nav-text">九.各种类型默认值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十-变量命名规范"><span class="nav-number">10.</span> <span class="nav-text">十.变量命名规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十一-什么是常量"><span class="nav-number">11.</span> <span class="nav-text">十一.什么是常量?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">12.</span> <span class="nav-text">练习题</span></a></li></ol></div>
-        
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/uploads/head.jpg"
-      alt="penghuan">
-  <p class="site-author-name" itemprop="name">penghuan</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">26</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://github.com/sweet-ph" title="GitHub &rarr; https://github.com/sweet-ph" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:pengh0722coder@163.com" title="E-Mail &rarr; mailto:pengh0722coder@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">pengh</span>
 </div>
 
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/15/Java控制语句/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Java控制语句</span>
+            </a>
+        </div>
         
-      </div>
-    </footer>
-  </div>
-
-  
-
-
-  <script src="/lib/anime.min.js?v=3.1.0"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
-<script src="/js/schemes/muse.js?v=7.4.0"></script>
-
-<script src="/js/next-boot.js?v=7.4.0"></script>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/10/学习Dubbo/">
+                <span class="level-item">学习Dubbo</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-  
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'xxxxxxxx',
+        app_key: 'xxxxxxxx',
+        placeholder: 'Please enter comments.'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
 
 
 
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/59dbc1a4cd792b7d036d83e31dfbf5b6?s=128" alt="penghuan">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        penghuan
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        study note
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>leshan sichuan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/sweet-ph" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/sweet-ph">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="E-Mail" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-creative-commons"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.baidu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Baidu</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.baidu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/HTML/">
+            <span class="level-start">
+                <span class="level-item">HTML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaEE/">
+            <span class="level-start">
+                <span class="level-item">JavaEE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaSE/">
+            <span class="level-start">
+                <span class="level-item">JavaSE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Mysql/">
+            <span class="level-start">
+                <span class="level-item">Mysql</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/集群/">
+            <span class="level-start">
+                <span class="level-item">集群</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Dubbo/" style="font-size: 10px;">Dubbo</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/JavaEE/" style="font-size: 13.33px;">JavaEE</a> <a href="/tags/Mysql/" style="font-size: 16.67px;">Mysql</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
 
 
 
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="初识Java" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 penghuan&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
 
 
 
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
+<script src="/js/main.js" defer></script>
 
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 </body>
 </html>

@@ -1,61 +1,16 @@
 <!DOCTYPE html>
-
-
-
-
-
-<html lang="zh-CN">
+<html  lang="zh">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+    <meta charset="utf-8" />
 
-<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Java循环语句Plus(多重循环) - Hexo</title>
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.4.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
-  };
-</script>
-
-  <meta name="description" content="九九乘法表正序 123456789101112131415161718for(int i = 1; i &amp;lt; 10; i ++) &amp;#123;    for(int j = 1; j &amp;lt; 10; j++) &amp;#123;    	if(i &amp;gt;= j)    		System.out.print(i + &quot;*&quot; + j + &quot;=&quot; + i * j + (i * j &amp;gt;= 10 ?">
+    <meta name="description" content="九九乘法表正序 123456789101112131415161718for(int i = 1; i &amp;lt; 10; i ++) &amp;#123;    for(int j = 1; j &amp;lt; 10; j++) &amp;#123;    	if(i &amp;gt;= j)    		System.out.print(i + &quot;*&quot; + j + &quot;=&quot; + i * j + (i * j &amp;gt;= 10 ?">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java循环语句Plus(多重循环)">
@@ -63,26 +18,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="九九乘法表正序 123456789101112131415161718for(int i = 1; i &amp;lt; 10; i ++) &amp;#123;    for(int j = 1; j &amp;lt; 10; j++) &amp;#123;    	if(i &amp;gt;= j)    		System.out.print(i + &quot;*&quot; + j + &quot;=&quot; + i * j + (i * j &amp;gt;= 10 ?">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-18T01:16:33.679Z">
+<meta property="og:image" content="http://yoursite.com/images/java/javase.jpg">
+<meta property="og:updated_time" content="2019-11-26T03:29:35.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java循环语句Plus(多重循环)">
 <meta name="twitter:description" content="九九乘法表正序 123456789101112131415161718for(int i = 1; i &amp;lt; 10; i ++) &amp;#123;    for(int j = 1; j &amp;lt; 10; j++) &amp;#123;    	if(i &amp;gt;= j)    		System.out.print(i + &quot;*&quot; + j + &quot;=&quot; + i * j + (i * j &amp;gt;= 10 ?">
-  <link rel="canonical" href="http://yoursite.com/2019/10/17/Java循环语句Plus(多重循环)/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
-  };
-</script>
-
-  <title>Java循环语句Plus(多重循环) | Hexo</title>
-  
+<meta name="twitter:image" content="http://yoursite.com/images/java/javase.jpg">
 
 
 
@@ -90,444 +31,1093 @@
 
 
 
+<link rel="icon" href="/images/favicon.svg">
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-tags">
-      
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-categories">
-      
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-archives">
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
             
-
-  <div id="posts" class="posts-expand">
-      <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/17/Java循环语句Plus(多重循环)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="penghuan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Java循环语句Plus(多重循环)
-
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-17 09:48:14" itemprop="dateCreated datePublished" datetime="2019-10-17T09:48:14+08:00">2019-10-17</time>
-            </span>
-          
+                <img src="/images/logo.svg" alt="Java循环语句Plus(多重循环)" height="28">
             
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-18 09:16:33" itemprop="dateModified" datetime="2019-10-18T09:16:33+08:00">2019-10-18</time>
-              </span>
-            
-          
-
-          
-
+            </a>
         </div>
-      </header>
-
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
     
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/java/javase.jpg" alt="Java循环语句Plus(多重循环)">
+        </span>
+    </div>
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h4 id="九九乘法表"><a href="#九九乘法表" class="headerlink" title="九九乘法表"></a>九九乘法表</h4><p>正序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">    	<span class="keyword">if</span>(i &gt;= j)</span><br><span class="line">    		System.out.print(i + <span class="string">"*"</span> + j + <span class="string">"="</span> + i * j + (i * j &gt;= <span class="number">10</span> ? <span class="string">" "</span> : <span class="string">"  "</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*  Output</span></span><br><span class="line"><span class="comment"> *  1*1=1  </span></span><br><span class="line"><span class="comment"> *  2*1=2  2*2=4  </span></span><br><span class="line"><span class="comment"> *  3*1=3  3*2=6  3*3=9  </span></span><br><span class="line"><span class="comment"> *  4*1=4  4*2=8  4*3=12 4*4=16 </span></span><br><span class="line"><span class="comment"> *  5*1=5  5*2=10 5*3=15 5*4=20 5*5=25 </span></span><br><span class="line"><span class="comment"> *  6*1=6  6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 </span></span><br><span class="line"><span class="comment"> *  7*1=7  7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 </span></span><br><span class="line"><span class="comment"> *  8*1=8  8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 </span></span><br><span class="line"><span class="comment"> *  9*1=9  9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-17T01:48:14.000Z">2019-10-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 363 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Java循环语句Plus(多重循环)
+            
+        </h1>
+        <div class="content">
+            <h4 id="九九乘法表"><a href="#九九乘法表" class="headerlink" title="九九乘法表"></a>九九乘法表</h4><p>正序</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i ++) &#123;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;</span><br><span class="line">    	<span class="hljs-keyword">if</span>(i &gt;= j)</span><br><span class="line">    		System.out.print(i + <span class="hljs-string">"*"</span> + j + <span class="hljs-string">"="</span> + i * j + (i * j &gt;= <span class="hljs-number">10</span> ? <span class="hljs-string">" "</span> : <span class="hljs-string">"  "</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*  Output</span></span><br><span class="line"><span class="hljs-comment"> *  1*1=1  </span></span><br><span class="line"><span class="hljs-comment"> *  2*1=2  2*2=4  </span></span><br><span class="line"><span class="hljs-comment"> *  3*1=3  3*2=6  3*3=9  </span></span><br><span class="line"><span class="hljs-comment"> *  4*1=4  4*2=8  4*3=12 4*4=16 </span></span><br><span class="line"><span class="hljs-comment"> *  5*1=5  5*2=10 5*3=15 5*4=20 5*5=25 </span></span><br><span class="line"><span class="hljs-comment"> *  6*1=6  6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 </span></span><br><span class="line"><span class="hljs-comment"> *  7*1=7  7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 </span></span><br><span class="line"><span class="hljs-comment"> *  8*1=8  8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 </span></span><br><span class="line"><span class="hljs-comment"> *  9*1=9  9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 </span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
 
 <p>反序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">9</span>; i &gt; <span class="number">0</span>; i --) &#123;</span><br><span class="line">    <span class="keyword">int</span> num = i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">9</span>; j &gt; <span class="number">0</span>; j --) &#123;</span><br><span class="line">    	<span class="keyword">if</span>(num &gt; <span class="number">0</span>)</span><br><span class="line">    		System.out.print(j + <span class="string">"*"</span> + num  + <span class="string">"="</span> + j * num + (j * num &gt;= <span class="number">10</span> ? <span class="string">" "</span> : <span class="string">"  "</span>));</span><br><span class="line">    	num --;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*  Output:</span></span><br><span class="line"><span class="comment"> *  9*9=81 8*8=64 7*7=49 6*6=36 5*5=25 4*4=16 3*3=9  2*2=4  1*1=1  </span></span><br><span class="line"><span class="comment"> *  9*8=72 8*7=56 7*6=42 6*5=30 5*4=20 4*3=12 3*2=6  2*1=2  </span></span><br><span class="line"><span class="comment"> *  9*7=63 8*6=48 7*5=35 6*4=24 5*3=15 4*2=8  3*1=3  </span></span><br><span class="line"><span class="comment"> *  9*6=54 8*5=40 7*4=28 6*3=18 5*2=10 4*1=4  </span></span><br><span class="line"><span class="comment"> *  9*5=45 8*4=32 7*3=21 6*2=12 5*1=5  </span></span><br><span class="line"><span class="comment"> *  9*4=36 8*3=24 7*2=14 6*1=6  </span></span><br><span class="line"><span class="comment"> *  9*3=27 8*2=16 7*1=7  </span></span><br><span class="line"><span class="comment"> *  9*2=18 8*1=8  </span></span><br><span class="line"><span class="comment"> *  9*1=9 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### break flag</span><br><span class="line">给循环体加一个标签,<span class="keyword">break</span>后面跟flag名字,则退出标记的循环</span><br><span class="line">```java</span><br><span class="line">flag01:<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i ++)&#123;</span><br><span class="line">    flag02:<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j ++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span> flag01;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">9</span>; i &gt; <span class="hljs-number">0</span>; i --) &#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> num = i;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">9</span>; j &gt; <span class="hljs-number">0</span>; j --) &#123;</span><br><span class="line">    	<span class="hljs-keyword">if</span>(num &gt; <span class="hljs-number">0</span>)</span><br><span class="line">    		System.out.print(j + <span class="hljs-string">"*"</span> + num  + <span class="hljs-string">"="</span> + j * num + (j * num &gt;= <span class="hljs-number">10</span> ? <span class="hljs-string">" "</span> : <span class="hljs-string">"  "</span>));</span><br><span class="line">    	num --;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*  Output:</span></span><br><span class="line"><span class="hljs-comment"> *  9*9=81 8*8=64 7*7=49 6*6=36 5*5=25 4*4=16 3*3=9  2*2=4  1*1=1  </span></span><br><span class="line"><span class="hljs-comment"> *  9*8=72 8*7=56 7*6=42 6*5=30 5*4=20 4*3=12 3*2=6  2*1=2  </span></span><br><span class="line"><span class="hljs-comment"> *  9*7=63 8*6=48 7*5=35 6*4=24 5*3=15 4*2=8  3*1=3  </span></span><br><span class="line"><span class="hljs-comment"> *  9*6=54 8*5=40 7*4=28 6*3=18 5*2=10 4*1=4  </span></span><br><span class="line"><span class="hljs-comment"> *  9*5=45 8*4=32 7*3=21 6*2=12 5*1=5  </span></span><br><span class="line"><span class="hljs-comment"> *  9*4=36 8*3=24 7*2=14 6*1=6  </span></span><br><span class="line"><span class="hljs-comment"> *  9*3=27 8*2=16 7*1=7  </span></span><br><span class="line"><span class="hljs-comment"> *  9*2=18 8*1=8  </span></span><br><span class="line"><span class="hljs-comment"> *  9*1=9 </span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### break flag</span><br><span class="line">给循环体加一个标签,<span class="hljs-keyword">break</span>后面跟flag名字,则退出标记的循环</span><br><span class="line">```java</span><br><span class="line">flag01:<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i ++)&#123;</span><br><span class="line">    flag02:<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j ++)&#123;</span><br><span class="line">        <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">break</span> flag01;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="输出图案"><a href="#输出图案" class="headerlink" title="输出图案"></a>输出图案</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printStar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i ++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i,line = <span class="number">9</span>; j &lt;= <span class="number">9</span>; j ++) &#123;</span><br><span class="line">            System.out.print(<span class="string">"*"</span>);</span><br><span class="line">            <span class="keyword">if</span>(i &lt; <span class="number">5</span> &amp;&amp; i + line-- == <span class="number">10</span>)</span><br><span class="line">            	<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  *</span></span><br><span class="line"><span class="comment"> *  **</span></span><br><span class="line"><span class="comment"> *  ***</span></span><br><span class="line"><span class="comment"> *  ****</span></span><br><span class="line"><span class="comment"> *  *****</span></span><br><span class="line"><span class="comment"> *  ****</span></span><br><span class="line"><span class="comment"> *  ***</span></span><br><span class="line"><span class="comment"> *  **</span></span><br><span class="line"><span class="comment"> *  *</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h4 id="输出图案"><a href="#输出图案" class="headerlink" title="输出图案"></a>输出图案</h4><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printStar</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i ++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i,line = <span class="hljs-number">9</span>; j &lt;= <span class="hljs-number">9</span>; j ++) &#123;</span><br><span class="line">            System.out.print(<span class="hljs-string">"*"</span>);</span><br><span class="line">            <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">5</span> &amp;&amp; i + line-- == <span class="hljs-number">10</span>)</span><br><span class="line">            	<span class="hljs-keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"> *  *</span></span><br><span class="line"><span class="hljs-comment"> *  **</span></span><br><span class="line"><span class="hljs-comment"> *  ***</span></span><br><span class="line"><span class="hljs-comment"> *  ****</span></span><br><span class="line"><span class="hljs-comment"> *  *****</span></span><br><span class="line"><span class="hljs-comment"> *  ****</span></span><br><span class="line"><span class="hljs-comment"> *  ***</span></span><br><span class="line"><span class="hljs-comment"> *  **</span></span><br><span class="line"><span class="hljs-comment"> *  *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><ol>
 <li><p>“百钱买百鸡”是我国古代的著名数学题。<br>3文钱可以买1只公鸡，2文钱可以买1只母鸡，1文钱可以买3只小鸡。<br>用100文钱买100只鸡，那么各有公鸡、母鸡、小鸡多少只？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buyChicken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> male = <span class="number">1</span>; male &lt; <span class="number">100</span>/<span class="number">3</span>; male ++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> kid = <span class="number">3</span>; kid &lt;= <span class="number">97</span>; kid += <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> female = <span class="number">100</span> - male - kid;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">100</span> == <span class="number">3</span> * male + <span class="number">2</span> * female + kid/<span class="number">3</span> &amp;&amp; female &gt; <span class="number">0</span>)</span><br><span class="line">            	System.out.println(<span class="string">"公鸡:"</span> + male + <span class="string">"\t母鸡:"</span> + female + <span class="string">"\t小鸡"</span> + kid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*  Output:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  公鸡:5	母鸡:32	小鸡63</span></span><br><span class="line"><span class="comment"> *  公鸡:10	母鸡:24	小鸡66</span></span><br><span class="line"><span class="comment"> *  公鸡:15	母鸡:16	小鸡69</span></span><br><span class="line"><span class="comment"> *  公鸡:20	母鸡:8	小鸡72</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buyChicken</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> male = <span class="hljs-number">1</span>; male &lt; <span class="hljs-number">100</span>/<span class="hljs-number">3</span>; male ++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> kid = <span class="hljs-number">3</span>; kid &lt;= <span class="hljs-number">97</span>; kid += <span class="hljs-number">3</span>)&#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> female = <span class="hljs-number">100</span> - male - kid;</span><br><span class="line">            <span class="hljs-keyword">if</span>(<span class="hljs-number">100</span> == <span class="hljs-number">3</span> * male + <span class="hljs-number">2</span> * female + kid/<span class="hljs-number">3</span> &amp;&amp; female &gt; <span class="hljs-number">0</span>)</span><br><span class="line">            	System.out.println(<span class="hljs-string">"公鸡:"</span> + male + <span class="hljs-string">"\t母鸡:"</span> + female + <span class="hljs-string">"\t小鸡"</span> + kid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*  Output:</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *  公鸡:5	母鸡:32	小鸡63</span></span><br><span class="line"><span class="hljs-comment"> *  公鸡:10	母鸡:24	小鸡66</span></span><br><span class="line"><span class="hljs-comment"> *  公鸡:15	母鸡:16	小鸡69</span></span><br><span class="line"><span class="hljs-comment"> *  公鸡:20	母鸡:8	小鸡72</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>搬砖问题：<br>36 块砖， 36 人搬，<br>男搬4，女搬3，2小孩抬1砖，<br>要求一次全搬完，<br>问男、女和小孩各多少人？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveBrick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> man = <span class="number">1</span>; man &lt; <span class="number">36</span>/<span class="number">4</span>; man ++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> kid = <span class="number">2</span>; kid &lt;= <span class="number">34</span>; kid += <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> woman = <span class="number">36</span> - man - kid;</span><br><span class="line">            <span class="keyword">if</span>(<span class="number">36</span> == <span class="number">4</span> * man + <span class="number">3</span> * woman + kid/<span class="number">2</span> &amp;&amp; <span class="number">0</span> &lt; woman)</span><br><span class="line">            	System.out.println(<span class="string">"男人:"</span> + man + <span class="string">"\t女人:"</span> + woman + <span class="string">"\t孩子:"</span> + kid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;			</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*  Output:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  男人:3	女人:3	孩子:30</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveBrick</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> man = <span class="hljs-number">1</span>; man &lt; <span class="hljs-number">36</span>/<span class="hljs-number">4</span>; man ++) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> kid = <span class="hljs-number">2</span>; kid &lt;= <span class="hljs-number">34</span>; kid += <span class="hljs-number">2</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">int</span> woman = <span class="hljs-number">36</span> - man - kid;</span><br><span class="line">            <span class="hljs-keyword">if</span>(<span class="hljs-number">36</span> == <span class="hljs-number">4</span> * man + <span class="hljs-number">3</span> * woman + kid/<span class="hljs-number">2</span> &amp;&amp; <span class="hljs-number">0</span> &lt; woman)</span><br><span class="line">            	System.out.println(<span class="hljs-string">"男人:"</span> + man + <span class="hljs-string">"\t女人:"</span> + woman + <span class="hljs-string">"\t孩子:"</span> + kid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;			</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/*  Output:</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *  男人:3	女人:3	孩子:30</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
-    </div>
-
-    
-    
-    
-        
-      
-
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/Java/" rel="tag"># Java</a>
-            
-          </div>
-        
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/2019/10/16/Java循环语句/" rel="next" title="Java循环语句">
-                  <i class="fa fa-chevron-left"></i> Java循环语句
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/18/Java数组/" rel="prev" title="Java数组">
-                  Java数组 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
-  
-  
-  
-  </article>
-
-  </div>
-
-
-          </div>
-          
-
         </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Java/">Java</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
     </div>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-        
-        
-        
-        
-      
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#九九乘法表"><span class="nav-number">1.</span> <span class="nav-text">九九乘法表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出图案"><span class="nav-number">2.</span> <span class="nav-text">输出图案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">3.</span> <span class="nav-text">练习题</span></a></li></ol></div>
-        
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image"
-      src="/uploads/head.jpg"
-      alt="penghuan">
-  <p class="site-author-name" itemprop="name">penghuan</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">26</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-categories">
-        
-          
-            <a href="/categories/">
-          
-        
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-          
-            <a href="/tags/">
-          
-        
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
-        </a>
-      </div>
-    
-  </nav>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://github.com/sweet-ph" title="GitHub &rarr; https://github.com/sweet-ph" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:pengh0722coder@163.com" title="E-Mail &rarr; mailto:pengh0722coder@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-  </div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">pengh</span>
 </div>
 
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/18/Java数组/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Java数组</span>
+            </a>
+        </div>
         
-      </div>
-    </footer>
-  </div>
-
-  
-
-
-  <script src="/lib/anime.min.js?v=3.1.0"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
-<script src="/js/schemes/muse.js?v=7.4.0"></script>
-
-<script src="/js/next-boot.js?v=7.4.0"></script>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/16/Java循环语句/">
+                <span class="level-item">Java循环语句</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 
-  
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'xxxxxxxx',
+        app_key: 'xxxxxxxx',
+        placeholder: 'Please enter comments.'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
 
 
 
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/59dbc1a4cd792b7d036d83e31dfbf5b6?s=128" alt="penghuan">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        penghuan
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        study note
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>leshan sichuan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/sweet-ph" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/sweet-ph">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="E-Mail" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-creative-commons"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.baidu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Baidu</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.baidu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/HTML/">
+            <span class="level-start">
+                <span class="level-item">HTML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaEE/">
+            <span class="level-start">
+                <span class="level-item">JavaEE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaSE/">
+            <span class="level-start">
+                <span class="level-item">JavaSE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Mysql/">
+            <span class="level-start">
+                <span class="level-item">Mysql</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/集群/">
+            <span class="level-start">
+                <span class="level-item">集群</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Dubbo/" style="font-size: 10px;">Dubbo</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/JavaEE/" style="font-size: 13.33px;">JavaEE</a> <a href="/tags/Mysql/" style="font-size: 16.67px;">Mysql</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
 
 
 
 
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Java循环语句Plus(多重循环)" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 penghuan&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
 
 
 
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
+<script src="/js/main.js" defer></script>
 
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 </body>
 </html>

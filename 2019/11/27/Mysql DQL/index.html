@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Mysql DQL - Hexo</title>
+
+
+    <meta name="description" content="SELECT 简介：SELECT查询出来显示的是一个副本 投影 1select name,sex from t_student;       不同表的相同字段，通过前缀区分1select t_student.id from t_student;       不同数据库的相同表明，用前缀区分1select study.t_student from t_student;       列的别名12345">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql DQL">
+<meta property="og:url" content="http://yoursite.com/2019/11/27/Mysql DQL/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SELECT 简介：SELECT查询出来显示的是一个副本 投影 1select name,sex from t_student;       不同表的相同字段，通过前缀区分1select t_student.id from t_student;       不同数据库的相同表明，用前缀区分1select study.t_student from t_student;       列的别名12345">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/mysql/mysql.jpg">
+<meta property="og:updated_time" content="2019-11-28T02:21:31.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql DQL">
+<meta name="twitter:description" content="SELECT 简介：SELECT查询出来显示的是一个副本 投影 1select name,sex from t_student;       不同表的相同字段，通过前缀区分1select t_student.id from t_student;       不同数据库的相同表明，用前缀区分1select study.t_student from t_student;       列的别名12345">
+<meta name="twitter:image" content="http://yoursite.com/images/mysql/mysql.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Mysql DQL" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/mysql/mysql.jpg" alt="Mysql DQL">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-27T01:44:40.000Z">2019-11-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Mysql/">Mysql</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 2022 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Mysql DQL
+            
+        </h1>
+        <div class="content">
+            <h4 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h4><ol>
+<li>简介：SELECT查询出来显示的是一个副本 投影 <figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span>,sex <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="2">
+<li>不同表的相同字段，通过前缀区分<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> t_student.id <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="3">
+<li>不同数据库的相同表明，用前缀区分<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> study.t_student <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="4">
+<li>列的别名<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 写法一, 列名 as 别名</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'学号'</span>,<span class="hljs-keyword">name</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'姓名'</span> <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 写法二, 列名 别名</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span> <span class="hljs-string">'学号'</span>,<span class="hljs-keyword">name</span> <span class="hljs-string">'姓名'</span> <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 写法三 列名 别名		可以不加引号，但是加上引号保障别名结构</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span> 学号,<span class="hljs-keyword">name</span> 姓名 <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="5">
+<li>表的别名<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> s.s_id, c.c_id, c.c_name</span><br><span class="line"><span class="hljs-keyword">from</span> t_student <span class="hljs-keyword">as</span> s, t_class <span class="hljs-keyword">as</span> c;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="6">
+<li>select查询后面加上运算<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> age + <span class="hljs-number">10</span></span><br><span class="line"><span class="hljs-keyword">from</span> t_stuednt</span><br><span class="line"><span class="hljs-keyword">where</span> age <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="7">
+<li>关键字distinct, 用来排除重复的字段, 实现去重效果<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> sex <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="8">
+<li>关键字limit, 实现分页效果, 带参数limit start_index, offset, Limit是Mysql的方言<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span> </span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-comment">-- 从下标1开始,查询长度为5, 如果只有一个参数,下标默认从0开始</span></span><br><span class="line"><span class="hljs-keyword">limit</span> <span class="hljs-number">1</span>,<span class="hljs-number">5</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><ol>
+<li>关键字like实现模糊查询<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- _代表一个字符，%代表零个或者多个字符 \实现转义</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t_student <span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">like</span> <span class="hljs-string">'_1%\_\%'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 升序，可以直接order by,默认为order by asc</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">asc</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 降序</span></span><br><span class="line"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> t_student </span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">desc</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">--  count()实现计数,返回查询到的条数总和</span></span><br><span class="line"><span class="hljs-comment">--  一般求记录的条数，使用count(id) 效率高</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(<span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  求不重复的字段条数</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(<span class="hljs-keyword">distinct</span> <span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  可以接多个表达式</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(<span class="hljs-keyword">distinct</span> <span class="hljs-keyword">id</span>,s_name) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  sum()实现求和，返回该字段累加的和，一般用于数字，如果是字符，则没有查询结果</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">sum</span>(<span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  avg()实现求平均数，返回字段的平均数,与sum类似</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(<span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  max()实现求最大值,返回该字段的最大值</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">max</span>(<span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  min()实现求最小值,返回该字段的最小值</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">min</span>(<span class="hljs-keyword">id</span>) <span class="hljs-keyword">from</span> t_student;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="数据组合"><a href="#数据组合" class="headerlink" title="数据组合"></a>数据组合</h4><ol>
+<li>当查询不同组的时候<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">from</span> t_student <span class="hljs-keyword">where</span> s_class = <span class="hljs-string">'classo1'</span>;</span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">from</span> t_student <span class="hljs-keyword">where</span> s_class = <span class="hljs-string">'classo2'</span>;</span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">from</span> t_student <span class="hljs-keyword">where</span> s_class = <span class="hljs-string">'classo3'</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="2">
+<li>现在有一个group by关键字来分组查询<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">class</span>,<span class="hljs-keyword">count</span>(<span class="hljs-keyword">class</span>) <span class="hljs-keyword">as</span> <span class="hljs-string">'人数'</span></span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">class</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="3">
+<li>group by 至此接入多个参数<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'班级'</span>,age <span class="hljs-keyword">as</span> <span class="hljs-string">'年龄'</span>,<span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> <span class="hljs-string">'数量'</span></span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span></span><br><span class="line"><span class="hljs-keyword">and</span> age <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">class</span>,age;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="4">
+<li>mysql方言group by弊端<br>在mysql中，group by后面的字段没有强制性的要求select输出，<br>可能造成分组字段与select后字段不匹配，照成视觉上的错误。</li>
+</ol>
+<br>
+
+<h4 id="having关键字"><a href="#having关键字" class="headerlink" title="having关键字"></a>having关键字</h4><p>having关键字 是聚合函数加入条件查询中</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">count</span>(*)</span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> age</span><br><span class="line"><span class="hljs-keyword">having</span> <span class="hljs-keyword">avg</span>(age) &gt; <span class="hljs-number">17</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="sql执行顺序"><a href="#sql执行顺序" class="headerlink" title="sql执行顺序"></a>sql执行顺序</h4><figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(mark)            <span class="hljs-comment">-- 4</span></span><br><span class="line">    <span class="hljs-keyword">from</span> sorce              <span class="hljs-comment">-- 1 </span></span><br><span class="line">    <span class="hljs-keyword">where</span> mark &gt; <span class="hljs-number">60</span>         <span class="hljs-comment">-- 2</span></span><br><span class="line">    <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">id</span>             <span class="hljs-comment">-- 3</span></span><br><span class="line">    <span class="hljs-keyword">having</span> <span class="hljs-keyword">avg</span>(mark) &gt; <span class="hljs-number">0</span>    <span class="hljs-comment">-- 5</span></span><br><span class="line">    <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-keyword">desc</span>           <span class="hljs-comment">-- 6</span></span><br><span class="line">    <span class="hljs-keyword">limit</span> <span class="hljs-number">1</span>,<span class="hljs-number">5</span>               <span class="hljs-comment">-- 7</span></span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h4 id="练习题一"><a href="#练习题一" class="headerlink" title="练习题一"></a>练习题一</h4><ol>
+<li>创建数据表<br>班级表<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_class</span><br><span class="line">(</span><br><span class="line">    c_id <span class="hljs-built_in">int</span> auto_increment primary <span class="hljs-keyword">key</span>,</span><br><span class="line">    c_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">unique</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_class(c_name) <span class="hljs-keyword">values</span>(<span class="hljs-string">'奋斗班'</span>)</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_class(c_name) <span class="hljs-keyword">values</span>(<span class="hljs-string">'粪斗班'</span>)</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_class(c_name) <span class="hljs-keyword">values</span>(<span class="hljs-string">'奋逗班'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<p>学生表</p>
+<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_student</span><br><span class="line">(</span><br><span class="line">    s_id <span class="hljs-built_in">int</span> auto_increment primary <span class="hljs-keyword">key</span>,</span><br><span class="line">    s_name <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">unique</span>,</span><br><span class="line">    s_sex <span class="hljs-built_in">varchar</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">default</span>(<span class="hljs-string">'男'</span>),</span><br><span class="line">    s_age <span class="hljs-built_in">int</span>,</span><br><span class="line">    s_c_id <span class="hljs-built_in">int</span>,</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">constraint</span> <span class="hljs-string">`pk_student_class`</span> <span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(s_id) <span class="hljs-keyword">references</span> t_class(c_id)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'刘基'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'18'</span>,<span class="hljs-number">1</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'李伯'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'12'</span>,<span class="hljs-number">1</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'陈涛涛'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'22'</span>,<span class="hljs-number">1</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'郑欢欢'</span>,<span class="hljs-string">'女'</span>,<span class="hljs-string">'18'</span>,<span class="hljs-number">1</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'陈星星'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'8'</span>,<span class="hljs-number">2</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'张伯'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'17'</span>,<span class="hljs-number">2</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'陈伯'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'16'</span>,<span class="hljs-number">2</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'刘基'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'28'</span>,<span class="hljs-number">2</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'陈基'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'9'</span>,<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'刘基'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'9'</span>,<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'张伯'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'9'</span>,<span class="hljs-number">3</span>);</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'高基'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'29'</span>,<span class="hljs-number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ol start="2">
+<li>解答<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 把刘基的名字修改为刘伯温</span></span><br><span class="line"><span class="hljs-keyword">update</span> t_student</span><br><span class="line"><span class="hljs-keyword">set</span> s_name = <span class="hljs-string">'刘伯温'</span></span><br><span class="line"><span class="hljs-keyword">where</span> s_name = <span class="hljs-string">'刘基'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 唐伯虎年龄20，性别男，班级3，添加到表中 </span></span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_student(s_name,s_sex,s_age,s_c_id) <span class="hljs-keyword">values</span>(<span class="hljs-string">'唐伯虎'</span>,<span class="hljs-string">'男'</span>,<span class="hljs-string">'20'</span>,<span class="hljs-number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询出所有姓名包括伯的所有的人员的信息</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">where</span> s_name <span class="hljs-keyword">like</span> <span class="hljs-string">'%伯%'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询年龄在10-20之间的男性所有人员的信息</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">where</span> s_sex = <span class="hljs-string">'男'</span></span><br><span class="line"><span class="hljs-keyword">and</span> s_age <span class="hljs-keyword">between</span> <span class="hljs-number">10</span> <span class="hljs-keyword">and</span> <span class="hljs-number">20</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询年龄在10-20之间的所有人员前5条的信息(以年龄大小排序) 并且将查询出的每个人的年龄加10</span></span><br><span class="line"><span class="hljs-keyword">select</span> s_name,s_sex,s_age + <span class="hljs-number">10</span>,s_c_id</span><br><span class="line"><span class="hljs-keyword">from</span> t_student</span><br><span class="line"><span class="hljs-keyword">where</span> s_age <span class="hljs-keyword">between</span> <span class="hljs-number">10</span> <span class="hljs-keyword">and</span> <span class="hljs-number">20</span></span><br><span class="line"><span class="hljs-keyword">and</span> s_age <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span></span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> s_age <span class="hljs-keyword">desc</span></span><br><span class="line"><span class="hljs-keyword">limit</span> <span class="hljs-number">5</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 查询年龄在10岁以下或20岁以上的所有人员的姓名和年龄前5条的记录，并且将查询出的每个人的年龄加10，并且不能重复 并且给每个字段起一个别名</span></span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> s_name <span class="hljs-keyword">as</span> <span class="hljs-string">'姓名'</span>, s_age + <span class="hljs-number">10</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'年龄'</span></span><br><span class="line"><span class="hljs-keyword">from</span> s_student</span><br><span class="line"><span class="hljs-keyword">where</span> s_age &lt; <span class="hljs-number">10</span> </span><br><span class="line"><span class="hljs-keyword">or</span> s_age &gt; <span class="hljs-number">20</span></span><br><span class="line"><span class="hljs-keyword">limit</span> <span class="hljs-number">5</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<h4 id="练习题二"><a href="#练习题二" class="headerlink" title="练习题二"></a>练习题二</h4><ol>
+<li>创建数据表<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">-- 商品类别表 --</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">category</span>(</span><br><span class="line">   cat_id <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,   <span class="hljs-comment">--类别编号</span></span><br><span class="line">   cat_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>            <span class="hljs-comment">--类别名称</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">-- 商品表 --</span></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> goods(</span><br><span class="line">    goods_id <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,        <span class="hljs-comment">--商品编号</span></span><br><span class="line">    goods_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,                <span class="hljs-comment">--商品名称</span></span><br><span class="line">    goods_price <span class="hljs-keyword">DOUBLE</span>,                             <span class="hljs-comment">--商品进价</span></span><br><span class="line">    shop_price <span class="hljs-keyword">DOUBLE</span>,                              <span class="hljs-comment">--商品卖价</span></span><br><span class="line">    market_price <span class="hljs-keyword">DOUBLE</span>,                            <span class="hljs-comment">--市场价</span></span><br><span class="line">    cat_id <span class="hljs-built_in">INT</span>,                                     <span class="hljs-comment">--商品类别</span></span><br><span class="line">    goods_number <span class="hljs-built_in">INT</span>,                               <span class="hljs-comment">--商品数量</span></span><br><span class="line">   <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span>(cat_id) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-keyword">category</span>(cat_id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">category</span>(cat_name) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'航模'</span>),(<span class="hljs-string">'车模'</span>),(<span class="hljs-string">'船模'</span>),(<span class="hljs-string">'动物模型'</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'F16战斗机'</span>,<span class="hljs-number">300</span>,<span class="hljs-number">1000</span>,<span class="hljs-number">900</span>,<span class="hljs-number">1</span>,<span class="hljs-number">120</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'F35战斗机'</span>,<span class="hljs-number">400</span>,<span class="hljs-number">1200</span>,<span class="hljs-number">1000</span>,<span class="hljs-number">1</span>,<span class="hljs-number">210</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'F117隐形轰炸机'</span>,<span class="hljs-number">290</span>,<span class="hljs-number">800</span>,<span class="hljs-number">600</span>,<span class="hljs-number">1</span>,<span class="hljs-number">99</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'牧马人'</span>,<span class="hljs-number">120</span>,<span class="hljs-number">600</span>,<span class="hljs-number">500</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1200</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'宝马Z4'</span>,<span class="hljs-number">130</span>,<span class="hljs-number">560</span>,<span class="hljs-number">510</span>,<span class="hljs-number">2</span>,<span class="hljs-number">231</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'地中海帆船'</span>,<span class="hljs-number">90</span>,<span class="hljs-number">300</span>,<span class="hljs-number">180</span>,<span class="hljs-number">3</span>,<span class="hljs-number">68</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'密西西比号蒸汽明轮'</span>,<span class="hljs-number">100</span>,<span class="hljs-number">560</span>,<span class="hljs-number">520</span>,<span class="hljs-number">3</span>,<span class="hljs-number">114</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'德鲁伊号16门炮护卫舰'</span>,<span class="hljs-number">1322</span>,<span class="hljs-number">2322</span>,<span class="hljs-number">2600</span>,<span class="hljs-number">3</span>,<span class="hljs-number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> goods</span><br><span class="line">(goods_name,goods_price,shop_price,market_price,cat_id,goods_number) </span><br><span class="line"><span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'皇家理查德号 74门炮战舰'</span>,<span class="hljs-number">350</span>,<span class="hljs-number">800</span>,<span class="hljs-number">769</span>,<span class="hljs-number">3</span>,<span class="hljs-number">312</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<br>
+
+<ol start="2">
+<li>解答<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">--  查询每个类别下商品种类数</span></span><br><span class="line"><span class="hljs-keyword">select</span> c.cat_name <span class="hljs-keyword">as</span> 类别,<span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> <span class="hljs-string">'数量'</span></span><br><span class="line"><span class="hljs-keyword">from</span> goods <span class="hljs-keyword">as</span> g, <span class="hljs-keyword">category</span> <span class="hljs-keyword">as</span> c</span><br><span class="line"><span class="hljs-keyword">where</span> g.cat_id = c.cat_id</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> g.cat_id</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  查询本店每个商品价格比市场价低多少；</span></span><br><span class="line"><span class="hljs-keyword">select</span> market_price-shop_price <span class="hljs-keyword">as</span> <span class="hljs-string">'商品价格比市场价低'</span> <span class="hljs-keyword">from</span> goods</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  查询每个类别下面积压的货款</span></span><br><span class="line"><span class="hljs-keyword">select</span> c.cat_name <span class="hljs-keyword">as</span> 类别,<span class="hljs-keyword">sum</span>(goods_price) <span class="hljs-keyword">as</span> <span class="hljs-string">'积压贷款'</span></span><br><span class="line"><span class="hljs-keyword">from</span> goods <span class="hljs-keyword">as</span> g, <span class="hljs-keyword">category</span> <span class="hljs-keyword">as</span> c</span><br><span class="line"><span class="hljs-keyword">where</span> g.cat_id = c.cat_id</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> g.cat_id</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  查询本店商品价格比市场价低多少钱，输出低200元以上的商品</span></span><br><span class="line"><span class="hljs-keyword">select</span> * ,(market_price-shop_price) <span class="hljs-keyword">as</span> <span class="hljs-string">'差价'</span></span><br><span class="line"><span class="hljs-keyword">from</span> goods</span><br><span class="line"><span class="hljs-keyword">where</span> market_price-shop_price &gt; <span class="hljs-number">200</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  查询积压货款超过2万元的类别，以及该类别积压的货款</span></span><br><span class="line"><span class="hljs-keyword">select</span> *,<span class="hljs-keyword">sum</span>(goods_price * goods_number) <span class="hljs-keyword">as</span> <span class="hljs-string">'积压贷款'</span></span><br><span class="line"><span class="hljs-keyword">from</span> goods <span class="hljs-keyword">as</span> g, <span class="hljs-keyword">category</span> <span class="hljs-keyword">as</span> c</span><br><span class="line"><span class="hljs-keyword">where</span> g.cat_id = c.cat_id</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> g.goods_id</span><br><span class="line"><span class="hljs-keyword">having</span> <span class="hljs-keyword">sum</span>(goods_price * goods_number) &gt; <span class="hljs-number">20000</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  按类别号升序排列，每个类别下的商品进价降序排列</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> goods</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> cat_id <span class="hljs-keyword">asc</span>, goods_id <span class="hljs-keyword">desc</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  取价格第1-6高的商品</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> goods</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> goods_price <span class="hljs-keyword">desc</span></span><br><span class="line"><span class="hljs-keyword">limit</span> <span class="hljs-number">6</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  查询每个类别下进价最高的商品</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> goods</span><br><span class="line"><span class="hljs-keyword">where</span> goods_price <span class="hljs-keyword">in</span> (</span><br><span class="line">		<span class="hljs-keyword">select</span> <span class="hljs-keyword">max</span>(goods_price)</span><br><span class="line">		<span class="hljs-keyword">from</span> goods</span><br><span class="line">		<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cat_id</span><br><span class="line">)</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cat_id</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">--  取出每个类别下最新的产品(goods_id唯一)</span></span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> goods</span><br><span class="line"><span class="hljs-keyword">where</span> goods_id <span class="hljs-keyword">in</span> (</span><br><span class="line">		<span class="hljs-keyword">select</span> <span class="hljs-keyword">max</span>(goods_id)</span><br><span class="line">		<span class="hljs-keyword">from</span> goods</span><br><span class="line">		<span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cat_id</span><br><span class="line">)</span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> cat_id</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Mysql/">Mysql</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/11/28/Mysql 高级查询/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Mysql 高级查询</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/27/Mysql 练习/">
+                <span class="level-item">Mysql 练习</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'xxxxxxxx',
+        app_key: 'xxxxxxxx',
+        placeholder: 'Please enter comments.'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/59dbc1a4cd792b7d036d83e31dfbf5b6?s=128" alt="penghuan">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        penghuan
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        study note
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>leshan sichuan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/sweet-ph" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/sweet-ph">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="E-Mail" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-creative-commons"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="mailto:pengh0722coder@163.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.baidu.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Baidu</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.baidu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/HTML/">
+            <span class="level-start">
+                <span class="level-item">HTML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaEE/">
+            <span class="level-start">
+                <span class="level-item">JavaEE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/JavaSE/">
+            <span class="level-start">
+                <span class="level-item">JavaSE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">23</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Mysql/">
+            <span class="level-start">
+                <span class="level-item">Mysql</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/集群/">
+            <span class="level-start">
+                <span class="level-item">集群</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Dubbo/" style="font-size: 10px;">Dubbo</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/JavaEE/" style="font-size: 13.33px;">JavaEE</a> <a href="/tags/Mysql/" style="font-size: 16.67px;">Mysql</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/01/03/Netty入门理解/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="Netty入门理解">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T03:10:40.000Z">2020-01-03</time></div>
+                    <a href="/2020/01/03/Netty入门理解/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Netty入门理解</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/16/JavaEE之JSP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/javaee/javaee_icon.jpg" alt="JSP(Java Server Page)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-16T06:45:40.000Z">2019-12-16</time></div>
+                    <a href="/2019/12/16/JavaEE之JSP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">JSP(Java Server Page)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaEE/">JavaEE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/05/初识HTML/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/html/html.jpg" alt="初识HTML">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-05T01:39:14.000Z">2019-12-05</time></div>
+                    <a href="/2019/12/05/初识HTML/" class="title has-link-black-ter is-size-6 has-text-weight-normal">初识HTML</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/HTML/">HTML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/03/Java JDBC连接mysql/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java JDBC连接mysql数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-03T02:04:40.000Z">2019-12-03</time></div>
+                    <a href="/2019/12/03/Java JDBC连接mysql/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java JDBC连接mysql数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/java/javase.jpg" alt="Java类的加载、连接、初始化...">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-02T01:15:40.000Z">2019-12-02</time></div>
+                    <a href="/2019/12/02/Java类的加载、连接、初始化.../" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java类的加载、连接、初始化...</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/JavaSE/">JavaSE</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">21</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Dubbo/">
+                        <span class="tag">Dubbo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HTML/">
+                        <span class="tag">HTML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaEE/">
+                        <span class="tag">JavaEE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mysql/">
+                        <span class="tag">Mysql</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/zookeeper/">
+                        <span class="tag">zookeeper</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Mysql DQL" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 penghuan&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/sweet-ph">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
